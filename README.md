@@ -1,50 +1,79 @@
-# ImageMate
-Image compressor
+###ImageMate
 
-## Team
-- Stephen Herbert - Software developer
+##Introduction:
+ImageMate is an advanced image compression algorithm with API and site usage capabilities. It aims to improve website performance by reducing image file sizes, resulting in faster loading times and enhanced user experiences. This blog article provides an overview of ImageMate, its features, installation instructions, usage guidelines, and information on how to contribute to the project.
 
-## Technologies
+
+### yet to be done
+- Deployed Site: [Link to the deployed site]
+- Final Project Blog Article: [Link to the final project blog article]
+- Author's LinkedIn: [Author's LinkedIn profile link]
+
+##Installation:
+To install and set up ImageMate on your local development environment, follow these steps:
+
+1. Clone the ImageMate repository from GitHub:
+```
+$ git clone [repository_url]
+```
+
+2. Navigate to the project directory:
+```
+$ cd ImageMate
+```
+
+3. Install the required dependencies using pip:
+```
+$ pip install -r requirements.txt
+```
+
+4. Configure the database settings in the settings.py file according to your environment.
+
+5. Apply migrations to create the necessary database tables:
+```
+$ python manage.py migrate
+```
+
+6. Start the development server:
+```
+$ python manage.py runserver
+```
+
+7. Access ImageMate by visiting `http://localhost:8000` in your web browser.
+
+##Usage:
+ImageMate offers both API and site usage capabilities. Here's how you can utilize ImageMate:
+
+1. Site Usage:
+   - Visit the ImageMate site using the provided link.
+   - Upload an image that you want to compress.
+   - Customize the compression settings according to your preferences.
+   - Click the "Compress" button to initiate the compression process.
+   - Download the compressed image and integrate it into your website.
+
+2. API Usage:
+   - Refer to the ImageMate API documentation for details on how to make API requests.
+   - Use the provided endpoints to upload images, specify compression settings, and retrieve the compressed images programmatically.
+
+##Contributing:
+We welcome contributions from the open-source community to enhance ImageMate. To contribute to the project, please follow these guidelines:
+
+1. Fork the ImageMate repository.
+2. Create a new branch for your feature or bug fix.
+3. Implement the desired changes and ensure they adhere to the project's coding conventions.
+4. Write tests to validate your code changes.
+5. Commit and push your changes to your forked repository.
+6. Open a pull request, providing a clear description of your changes and their purpose.
+
+##Related Projects:
+ImageMate is built upon various technologies and libraries. Here are some related projects worth exploring:
+
 - Django
 - MongoDB
 - Pillow
 - Django REST Framework
-- JavaScript
-- HTML/CSS
 
-## Why MongoDB?
-Instead of using a traditional relational database like PostgreSQL, MongoDB was chosen as the database for ImageMate. MongoDB is a NoSQL database that is well-suited for handling large amounts of image data. Its flexible schema allows for storing images with varying dimensions and compression levels.
+##Licensing:
+ImageMate is open-source and released under the ''. For detailed information on the license, refer to the project's LICENSE file.
 
-## Challenges
-The main challenge addressed by the ImageMate project is optimizing image loading speed on websites. It provides image compression as a solution to improve site performance, resulting in faster load times and an enhanced user experience.
-
-It's important to note that ImageMate cannot resolve issues related to slow internet connectivity or outdated devices that may affect image loading speeds on a website.
-
-## Target Audience
-The ImageMate project is aimed at website owners and developers seeking to enhance their site's performance by compressing images. The end users of these sites will benefit from faster load times and an improved browsing experience.
-
-## Risks
-There are both technical and non-technical risks associated with the ImageMate project:
-
-- Technical risks include the possibility of the image compression algorithm not achieving the desired image quality. To mitigate this risk, extensive testing will be conducted using a variety of images to ensure consistent compression quality.
-
-- Non-technical risks encompass unforeseen circumstances such as illness or personal emergencies that may cause delays. To mitigate such risks, clear communication among team members will be maintained, and contingency plans will be put in place to address any issues that may arise.
-
-## Infrastructure
-The project will follow the Git flow branching and merging strategy in the team's repository. This involves creating a development branch where all work is done and creating feature branches from the development branch. Once a feature is complete, it will be merged back into the development branch and then into the master branch for release.
-
-The app will be deployed on a cloud-based platform such as Heroku. The deployment process will include creating a production-ready version of the app and uploading it to the platform.
-
-A script will be used to populate the app with sample images for testing purposes.
-
-Automated testing tools like PyTest will be utilized to ensure the proper functioning of the app.
-
-## Existing Solutions
-Similar existing solutions to ImageMate include TinyPNG, JPEGmini, and Kraken.io. These solutions also compress images to reduce file sizes.
-
-ImageMate differentiates itself from these solutions by providing both API and site usage capabilities. Users will have the option to compress images directly on the site or integrate ImageMate's API into their own applications. Additionally, ImageMate utilizes a unique image compression algorithm tailored specifically to the project's requirements.
-
-The decision to reimplement an existing solution was made with the belief that there is room for improvement in the current offerings. ImageMate's focus is on delivering a high-quality image compression algorithm with minimal loss in quality.
-
-## Conclusion
-ImageMate aims to optimize website performance by offering an image compression algorithm with API and site usage capabilities. By reducing image file sizes, it enables faster load times and enhances the user experience. Through careful implementation and testing, ImageMate seeks to provide a superior solution to existing image compression tools.
+We hope you find ImageMate useful for your image compression needs. Should you encounter any issues or have suggestions for improvement, please feel free to contribute or reach out to the project's maintainers. Happy compressing!
