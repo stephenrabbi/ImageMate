@@ -1,0 +1,17 @@
+{
+  "name": "ImageMate",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "ls",
+    "build": "ls",
+    "start": "npm run st",
+    "stop" : "deactivate",
+    "venv-make": "python -m venv venv",
+    "venv-start": "venv\\\\Scripts\\\\activate.bat",
+    "venv-req-get": "pip install -r requirements.txt",
+    "venv-req-create": "pip freeze > requirement.txt",
+    "st-b" : "venv\\Scripts\\activate.bat && python manage.py runserver",
+    "st": "concurrently  \"venv\\Scripts\\activate.bat && python manage.py runserver\""
+  }
+}

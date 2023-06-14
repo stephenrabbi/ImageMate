@@ -1,0 +1,6 @@
+image
+*.jpg
+
+status.py
+modes.txt
+venv
