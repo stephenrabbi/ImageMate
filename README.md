@@ -1,6 +1,6 @@
-###ImageMate
+# ImageMate
 
-##Introduction:
+## Introduction:
 ImageMate is an advanced image compression algorithm with API and site usage capabilities. It aims to improve website performance by reducing image file sizes, resulting in faster loading times and enhanced user experiences. This blog article provides an overview of ImageMate, its features, installation instructions, usage guidelines, and information on how to contribute to the project.
 
 
@@ -9,7 +9,7 @@ ImageMate is an advanced image compression algorithm with API and site usage cap
 - Final Project Blog Article: [Link to the final project blog article]
 - Author's LinkedIn: [Author's LinkedIn profile link]
 
-##Installation:
+## Installation:
 To install and set up ImageMate on your local development environment, follow these steps:
 
 1. Clone the ImageMate repository from GitHub:
@@ -41,7 +41,7 @@ $ python manage.py runserver
 
 7. Access ImageMate by visiting `http://localhost:8000` in your web browser.
 
-##Usage:
+## Usage:
 ImageMate offers both API and site usage capabilities. Here's how you can utilize ImageMate:
 
 1. Site Usage:
@@ -55,7 +55,7 @@ ImageMate offers both API and site usage capabilities. Here's how you can utiliz
    - Refer to the ImageMate API documentation for details on how to make API requests.
    - Use the provided endpoints to upload images, specify compression settings, and retrieve the compressed images programmatically.
 
-##Contributing:
+## Contributing:
 We welcome contributions from the open-source community to enhance ImageMate. To contribute to the project, please follow these guidelines:
 
 1. Fork the ImageMate repository.
@@ -65,7 +65,7 @@ We welcome contributions from the open-source community to enhance ImageMate. To
 5. Commit and push your changes to your forked repository.
 6. Open a pull request, providing a clear description of your changes and their purpose.
 
-##Related Projects:
+## Related Projects:
 ImageMate is built upon various technologies and libraries. Here are some related projects worth exploring:
 
 - Django
@@ -73,7 +73,7 @@ ImageMate is built upon various technologies and libraries. Here are some relate
 - Pillow
 - Django REST Framework
 
-##Licensing:
+## Licensing:
 ImageMate is open-source and released under the MIT License. For detailed information on the license, refer to the project's LICENSE file.
 
 We hope you find ImageMate useful for your image compression needs. Should you encounter any issues or have suggestions for improvement, please feel free to contribute or reach out to the project's maintainers. Happy compressing!
