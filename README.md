@@ -74,6 +74,6 @@ ImageMate is built upon various technologies and libraries. Here are some relate
 - Django REST Framework
 
 ##Licensing:
-ImageMate is open-source and released under the ''. For detailed information on the license, refer to the project's LICENSE file.
+ImageMate is open-source and released under the MIT License. For detailed information on the license, refer to the project's LICENSE file.
 
 We hope you find ImageMate useful for your image compression needs. Should you encounter any issues or have suggestions for improvement, please feel free to contribute or reach out to the project's maintainers. Happy compressing!
