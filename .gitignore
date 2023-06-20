@@ -1,5 +1,6 @@
 image
 *.jpg
+*.png
 
 status.py
 modes.txt

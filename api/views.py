@@ -8,7 +8,7 @@ from io import BytesIO
 from rest_framework.response import Response
 from .models import Image
 from .serializers import ImageSerializer
-from .forms import ImageUploadForm
+import base64
 
 # Create your views here.
 
@@ -20,21 +20,35 @@ class ImageRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
 
+def encode_image(output):
+    ''' This encodes bytes to 64 encoding'''
+    return base64.b64encode(output)
 
+def compress_image(input_image_path, quality=90):
+    ''' Compresses image from path and return 64 encoded bytes.
+    '''
+    output = BytesIO()
 
-def compress_image(input_image_path, output_image_path, quality=90):
-    with PILImage.open(input_image_path) as image:
-        image.save(output_image_path, "JPEG", optimize=True, quality=quality)
+    image =  PILImage.open(input_image_path)
+    image.save(output, "PNG", optimize=True, quality=quality)
+    
+    # output = encode_image(output.getvalue())
+    return output
 
-def decompress_image(input_image_path, output_image_path):
-    with PILImage.open(input_image_path) as image:
-        image.save(output_image_path, "JPEG")
+def decompress_image(input_image_path):
+    ''' Decompresses image from path and return 64 encoded bytes.
+    '''
+    output = BytesIO()
+    
+    image = PILImage.open(input_image_path)
+    image.save(output, "PNG")
+        
+    # output = encode_image(output)
+    return output
 
-
-compressed_path = "compressed_image.jpg"
-decompressed_path = "decompressed_image.png"
 
 def handle_upload_file(f):
+    #Take image file and save locally to `img.jpg`
     with open('img.jpg', 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
@@ -44,24 +58,26 @@ class CompressImageAPIView(generics.CreateAPIView):
     serializer_class = ImageSerializer
 
     def create(self, request, *args, **kwargs):
+        
         try:
-            print()
+            # compressed_image = Image(request.POST, request.FILES)
+            # if form.is_valid():
+            img = request.FILES['image']
+            if img:
+                handle_upload_file(img)
             
-            form = ImageUploadForm(request.POST, request.FILES)
-            if form.is_valid():
-                handle_upload_file(request.FILES['image'])
-                
-            output_file = 'out.jpg'
-            # image_file = request.FILES.get('file')
-            # image_file = request.data.get('file')
-            # output_file = request.data.get('out_file') or compressed_path
-            # compression_level = request.data.get('compression_level')
+            image_file = 'img.jpg'
             
-            result = compress_image('img.jpg', output_file)
-            result = open(output_file, 'rb')
-            
-            # return Response(serializer.data, status=status.HTTP_201_CREATED)
+            output = compress_image(image_file).getvalue()
+            output = encode_image(output)
+                        
+            result = {
+                "base64EncodedBytes" : output
+            }
+                                    
             return Response(result, status=status.HTTP_200_OK)
+            # return Response(request.POST, status=status.HTTP_200_OK)
+            # return Response(output, status=status.HTTP_200_OK, content_type="image/png")
         
         except Exception as e:
             
@@ -69,31 +85,31 @@ class CompressImageAPIView(generics.CreateAPIView):
 
 class DecompressImageAPIView(generics.CreateAPIView):
     serializer_class = ImageSerializer
-
+    
     def create(self, request, *args, **kwargs):
-        image_file = request.FILES.get('file')
-        compression_level = request.data.get('compression_level')
-
-        # Open the image file using Pillow
-        image = PILImage.open(image_file)
-        
-        image.save(image_file, optimize=True)
-
-        # Create a thumbnail for the compressed image
-        thumbnail_size = (100, 100)
-        image.thumbnail(thumbnail_size)
-        thumbnail_io = BytesIO()
-        image.save(thumbnail_io, format='JPEG')
-
-        # Save the compressed image and thumbnail to the database
-        compressed_image = Image(file=image_file, compression_level=compression_level)
-        compressed_image.thumbnail.save(image_file.name, thumbnail_io, save=False)
-        compressed_image.save()
-
-        # Serialize the compressed image data
-        serializer = self.get_serializer(compressed_image)
-
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        try:
+            # compressed_image = Image(request.POST, request.FILES)
+            # if form.is_valid():
+            img = request.FILES['image']
+            if img:
+                handle_upload_file(img)
+            
+            image_file = 'img.jpg'
+            
+            output = decompress_image(image_file).getvalue()
+            output = encode_image(output)
+                        
+            result = {
+                "base64EncodedBytes" : output
+            }
+                                    
+            return Response(result, status=status.HTTP_200_OK)
+            # return Response(request.POST, status=status.HTTP_200_OK)
+            # return Response(output, status=status.HTTP_200_OK, content_type="image/png")
+    
+        except Exception as e:
+            
+            return Response(f'Exception while saving image: {e}', status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # Decompress
 class GetThumbnailAPIView(generics.RetrieveAPIView):
@@ -102,3 +118,4 @@ class GetThumbnailAPIView(generics.RetrieveAPIView):
 
 def home(request):
     return render(request, 'home.html')
+

@@ -1,27 +1,74 @@
-    {% load static %}
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    
+    <title>Image Compression</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/css/bootstrap.min.css"> {% endcomment %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 
 </head>
 <body>
-    <h1> Image upload page</h1>
-    <form action="compress_image" method="post" enctype="multipart/form-data">
-        {% csrf_token %} 
-        <div class="drop-zone">
-            <span class="drop-zone__prompt">Drag file here or click to upload</span>
-            <input id="image" class="drop-zone__input" type="file" name="image"/>
+
+    <div class="container">
+        <div class="box">
+            <h3>Check out the API's  on Django Rest Framework</h3>
+            <a href="/compress" target="_blank">Compress API</a>
+            <a href="/decompress" target="_blank">Decompress API</a>
         </div>
-        <input type="submit" value="Submit">
+    </div>
+
+    <h1>Image Compression</h1>
+
+    <form id="imageUploadForm">
+        <div class="mb-3">
+            <label for="imageFile" class="form-label">Upload an image:</label>
+            <input type="file" class="form-control" id="imageFile" accept="image/*">
+        </div>
+        
+        <div class="mb3">
+            <label for="compressOption" class="form-control">Choose an option:</label>
+            <select id="compressOption" name="compressOption" class="form-select">
+                <option value="compress">Compress</option>
+                <option value="decompress">Decompress</option>
+            </select>
+        </div>
+
+        <img id="previewImage" src="#" alt="Image Preview">
+
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary" id="submitButton" disabled>Submit</button>
+        </div>
     </form>
-    
+
+    {% comment %} <button class="btn btn-success" id="downloadButton" disabled>Download</button> {% endcomment %}
+
+
+    {% comment %} <form id="imageUploadForm">
+        <label for="imageFile">Upload an image:</label>
+        <input type="file" id="imageFile" accept="image/*">
+        <br>
+        <img id="previewImage" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 200px;">
+        <br>
+        <label for="compressOption">Choose an option:</label>
+        <select id="compressOption" name="compressOption">
+            <option value="compress">Compress</option>
+            <option value="decompress">Decompress</option>
+        </select>
+        <br>
+        <button type="submit" id="submitButton" disabled>Submit</button>
+    </form> {% endcomment %}
+
+    {% comment %} <button id="downloadButton" disabled>Download</button> {% endcomment %}
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
 
 </body>
 </html>
